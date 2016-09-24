@@ -5,10 +5,31 @@
     <title>Welcome to Memo</title>
   </head>
   <body>
+    <h1>Welcome to Memo!</h1>
     <div id="app">
-      {{ message }}
+      <input v-model="newDeck" v-on:keyup.enter="addDeck">
+      <button @click="addDeck">Add deck!</button>
+      <ul>
+        <li v-for="deck in decks">
+          <span>{{ deck.title }}</span>
+          <button @click="removeDeck(deck['.key'])">X</button>
+        </li>
+      </ul>
     </div>
+    <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyBlQjibZ0k6UK5_zrecEKdbCpkgODGoXl4",
+        authDomain: "memo-80911.firebaseapp.com",
+        databaseURL: "https://memo-80911.firebaseio.com",
+        storageBucket: "memo-80911.appspot.com",
+        messagingSenderId: "283733050819"
+      };
+      firebase.initializeApp(config);
+    </script>
     <script type="text/javascript" src="vendor/vue.js"></script>
+    <script type="text/javascript" src="vendor/vuefire.min.js"></script>
     <script type="text/javascript" src="app.js"></script>
   </body>
 </html>
